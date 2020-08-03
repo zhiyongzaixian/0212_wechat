@@ -1,0 +1,2 @@
+<!--pages/logs/logs.wxml-->
+<text>1111 {{msg}}</text>

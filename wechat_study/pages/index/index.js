@@ -14,11 +14,14 @@ Page({
     msg: '初始化测试数据'
   },
 
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('onload()') 
+    console.log('index onload()') 
+    // 小程序环境中全局对象是wx，浏览器环境中全局对象是window
+    console.log(window);
     // 修改状态数据： this.setData()
     // this页面实例 Page实例
     setTimeout(() => {
@@ -28,11 +31,29 @@ Page({
       console.log(this.data.msg)
     }, 2000)
   },
+  hanldeParent(){
+    console.log('parent');
+  },
+  handleChild(){
+    console.log('child');
+  },
+  // 路由跳转
+  toLogs(){
+    // 保留当前页面
+    // wx.navigateTo({
+    //   url: '/pages/logs/logs',
+    // })
+    // 关闭当前页面，跳转至某个页面
+    wx.redirectTo({
+      url: '/pages/logs/logs',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    console.log('index onReady()') 
 
   },
 
@@ -40,21 +61,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(' index  onShow()');
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    console.log(' index  onHide()');
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    console.log('index  onUnload()');
   },
 
   /**
