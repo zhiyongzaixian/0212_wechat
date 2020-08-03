@@ -1,18 +1,32 @@
 // pages/index/index.js
+// 注册页面
 Page({
 
   /**
    * 页面的初始数据
    */
-  data: {
 
+  /*
+
+  
+  */
+  data: {
+    msg: '初始化测试数据'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('onload()') 
+    // 修改状态数据： this.setData()
+    // this页面实例 Page实例
+    setTimeout(() => {
+      this.setData({
+        msg: '修改之后的数据'
+      })
+      console.log(this.data.msg)
+    }, 2000)
   },
 
   /**
