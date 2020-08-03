@@ -11,7 +11,8 @@ Page({
   
   */
   data: {
-    msg: '初始化测试数据'
+    msg: '初始化测试数据',
+    userInfo: {}, // 用户基本信息
   },
 
 
@@ -30,6 +31,20 @@ Page({
       })
       console.log(this.data.msg)
     }, 2000)
+
+    // 获取用户信息，授权之后
+    wx.getUserInfo({
+      success: (res) => {
+        console.log('获取成功， ', res)
+        // 更新userInfo的状态
+        this.setData({
+          userInfo: res.userInfo
+        })
+      },
+      fail: () => {
+        console.log('获取失败')
+      }
+    })
   },
   hanldeParent(){
     console.log('parent');
@@ -49,6 +64,17 @@ Page({
     })
   },
 
+  // 获取用户信息的回调
+  hanldeGetUserInfo(res){
+    console.log(res)
+    if(res.detail.userInfo){
+      // 允许
+      // 更新userInfo的状态数据
+      this.setData({
+        userInfo: res.detail.userInfo
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

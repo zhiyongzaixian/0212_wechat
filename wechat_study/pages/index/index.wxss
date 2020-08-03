@@ -14,6 +14,14 @@
   border-radius: 100rpx;
   margin: 100rpx 0;
 }
+button {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 100rpx;
+  margin: 100rpx 0;
+  font-size: 24rpx;
+  line-height: 200rpx;
+}
 
 
 .userName {
