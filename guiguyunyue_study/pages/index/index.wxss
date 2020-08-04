@@ -1,10 +1,10 @@
 /* pages/index/index.wxss */
-.indexContainer swiper {
+.indexContainer .banner {
   width: 100%;
   height: 300rpx;
 }
 
-.indexContainer swiper image{
+.indexContainer .banner image{
   width: 100%;
   height: 300rpx;
 }
@@ -86,4 +86,41 @@
 /* 排行榜  */
 .topList {
   padding: 20rpx;
+}
+
+.topListSwiper{
+  height: 460rpx;
+}
+
+.swiperContent {
+  background: #fbfbfb;
+  width: 96%;
+}
+
+/* 排行榜的内容区 */
+.swiperContent .title {
+  font-size: 28rpx;
+  line-height: 80rpx;
+}
+
+
+.swiperContent .musicImg {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 10rpx;
+
+}
+
+.musicContent {
+  display: flex;
+  margin-top: 20rpx;
+}
+
+.musicContent text {
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.musicContent .count{
+  width: 100rpx;
+  text-align: center;
 }

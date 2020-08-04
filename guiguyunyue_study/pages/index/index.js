@@ -7,6 +7,7 @@ Page({
   data: {
     bannerList: [], // 轮播图数据
     recommendList: [], // 推荐歌曲
+    topList: [], // 排行榜数据
   },
 
   /**
@@ -24,6 +25,36 @@ Page({
     this.setData({
       recommendList: recommendListData.result
     })
+    
+    
+    // 获取topList排行榜数据
+    /*
+    * 1. 一个idx对应一个分类的数据
+    * 2. 需要5个分类的数据，所以发送5次
+    * 3. idx参数范围： 0 - 4
+    * */
+    let index = 0;
+    let resultArr = [];
+    while(index < 5){
+      let result = await request('/top/list', {idx: index++});
+      /*
+      * splice()
+      * slice()
+      * 详情见test.js
+      * */
+      let obj = {name: result.playlist.name, tracks: result.playlist.tracks.slice(0, 3)}
+      resultArr.push(obj)
+      // 提高首屏的渲染效率，缩短首屏渲染等待的时间，渲染的次数增多，用户体验好
+      this.setData({
+        topList: resultArr
+      })
+    }
+    // 渲染的次数少，首屏渲染等待的时间多长，用户体验差
+    // this.setData({
+    //   topList: resultArr
+    // })
+    
+    
   },
 
   /**
