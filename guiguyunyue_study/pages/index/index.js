@@ -1,28 +1,21 @@
-// pages/index/index.js
+import request from '../../utils/request'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    bannerList: [], // 轮播图数据
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    wx.request({
-      url: 'http://localhost:3000/banner',
-      data: {type: 2},
-      success: (res) => {
-        console.log('请求成功');
-        console.log(res);
-      },
-      fail: (err) => {
-        console.log('请求失败');
-        console.log(err);
-      }
+  onLoad: async function (options) {
+    let bannerListData = await request('/banner', {type: 2});
+    // 更新bannerList状态数据
+    this.setData({
+      bannerList: bannerListData.banners
     })
   },
 
