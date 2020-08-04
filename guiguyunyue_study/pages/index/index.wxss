@@ -1,0 +1,10 @@
+/* pages/index/index.wxss */
+.indexContainer swiper {
+  width: 100%;
+  height: 300rpx;
+}
+
+.indexContainer swiper image{
+  width: 100%;
+  height: 300rpx;
+}
