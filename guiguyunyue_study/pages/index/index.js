@@ -12,21 +12,32 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.request({
+      url: 'http://localhost:3000/banner',
+      data: {type: 2},
+      success: (res) => {
+        console.log('请求成功');
+        console.log(res);
+      },
+      fail: (err) => {
+        console.log('请求失败');
+        console.log(err);
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+  
   },
 
   /**
