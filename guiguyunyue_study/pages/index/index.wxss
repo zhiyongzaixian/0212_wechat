@@ -43,32 +43,15 @@
 .recommendContainer {
   padding: 20rpx;
 }
-.recommendContainer .header {
-  margin-bottom: 20rpx;
-}
-.recommendContainer .header .title {
-  font-size: 26rpx;
-  color: #666;
-}
 
-.recommendContainer .header .navContent {
-  height: 50rpx;
-  line-height: 50rpx;
-}
 
-.recommendContainer .header  .more {
-  float: right;
-  border: 1rpx solid #333;
-  font-size: 20rpx;
-  border-radius: 20rpx;
-  padding: 0 20rpx;
-}
 
 
 
 /* 滚动内容区 */
 .navScroll {
   display: flex;
+  height: 300rpx;
 }
 
 
@@ -97,4 +80,10 @@
   display: -webkit-box;
   -webkit-line-clamp: 2; /* 设置行数 */
   -webkit-box-orient: vertical; /*规定子元素的对齐方向 */
+}
+
+
+/* 排行榜  */
+.topList {
+  padding: 20rpx;
 }

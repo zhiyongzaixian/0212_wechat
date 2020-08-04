@@ -6,6 +6,7 @@ Page({
    */
   data: {
     bannerList: [], // 轮播图数据
+    recommendList: [], // 推荐歌曲
   },
 
   /**
@@ -16,6 +17,12 @@ Page({
     // 更新bannerList状态数据
     this.setData({
       bannerList: bannerListData.banners
+    })
+    
+    // 获取推荐歌曲的数据
+    let recommendListData = await request('/personalized', {limit: 10})
+    this.setData({
+      recommendList: recommendListData.result
     })
   },
 
