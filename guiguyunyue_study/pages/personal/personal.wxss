@@ -173,10 +173,10 @@
 }
 
 /* 最近播放 */
-.personalContent .scrollView {
-  display: flex;
-  height: 160rpx;
-}
+/*.personalContent .scrollView {*/
+  /*display: flex;*/
+  /*height: 160rpx;*/
+/*}*/
 .personalContent .recentPlay {
   display: flex;
 }
@@ -210,4 +210,19 @@
 }
 .cardList .card-item .more {
   float: right;
+}
+
+.scrollView {
+  display: flex;
+  height: 200rpx;
+}
+
+.scrollView .scrollItem {
+  margin-right: 20rpx;
+}
+
+.scrollView .scrollItem image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
 }
