@@ -32,6 +32,8 @@
 .videoNav {
   display: flex;
   white-space: nowrap;/*flexItem为纯文字的时候需要添加该属性*/
+  height: 62rpx;
+  padding: 10rpx 0;
 }
 
 .videoNav .scrollItem {

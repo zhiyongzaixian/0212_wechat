@@ -29,7 +29,28 @@ export default (url, data={}, method='GET') => {
       url: config.host + url,
       data,
       method,
+      header: { // 请求头
+        // cookie字段要求必须是字符串类型
+        cookie: JSON.parse(wx.getStorageSync('cookies')).toString()
+      },
       success: (res) => {
+        console.log(res);
+        /*
+        * 需求： video页面获取视频列表需要用户的cookie
+        * 获取：
+        *   1. 用户登录请求成功后res中获取： res.cookies
+        * 思路：
+        *   1. 用户登录请求成功以后获取res.cookies保存至本地
+        *   2. 之后发送请求从本地读取cookies携带cookie
+        *
+        *
+        * */
+        if(data.isLogin){ // 登录请求
+          wx.setStorage({
+            key: 'cookies',
+            data: JSON.stringify(res.cookies)
+          })
+        }
         resolve(res.data);
       },
       fail: (err) => {

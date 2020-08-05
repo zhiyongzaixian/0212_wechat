@@ -10,75 +10,17 @@
 
   <!-- 导航区域 -->
   <scroll-view class="videoNav" enable-flex scroll-x>
-    <view class="scrollItem">
-      <view class="navContent active">
-        现场
+    <view bindtap="changeNavId" id="{{item.id}}" class="scrollItem" wx:for="{{videoGroupList}}" wx:key="id">
+      <view class="navContent {{navId === item.id?'active': 'xxx'}}" >
+        {{item.name}}
       </view>
     </view>
-    <view class="scrollItem">
-      <view class="navContent active">
-        万有引力
-      </view>
-    </view><view class="scrollItem">
-    <view class="navContent">
-      现场
+  </scroll-view>
+
+  <!-- 视频列表 -->
+  <scroll-view  class="videoList">
+    <view class="videoItem" wx:for="{{videoList}}" wx:key="id">
+      <video src="{{item.data.urlInfo.url}}"></video>
     </view>
-  </view><view class="scrollItem">
-    <view class="navContent">
-      现场
-    </view>
-  </view><view class="scrollItem">
-    <view class="navContent">
-      现场
-    </view>
-  </view><view class="scrollItem">
-    <view class="navContent">
-      现场
-    </view>
-  </view><view class="scrollItem">
-    <view class="navContent">
-      现场
-    </view>
-  </view><view class="scrollItem">
-    <view class="navContent">
-      现场
-    </view>
-  </view><view class="scrollItem">
-    <view class="navContent">
-      现场
-    </view>
-  </view><view class="scrollItem">
-    <view class="navContent">
-      现场
-    </view>
-  </view><view class="scrollItem">
-    <view class="navContent">
-      现场
-    </view>
-  </view><view class="scrollItem">
-    <view class="navContent">
-      现场
-    </view>
-  </view><view class="scrollItem">
-    <view class="navContent">
-      现场
-    </view>
-  </view><view class="scrollItem">
-    <view class="navContent">
-      现场
-    </view>
-  </view><view class="scrollItem">
-    <view class="navContent">
-      现场
-    </view>
-  </view><view class="scrollItem">
-    <view class="navContent">
-      现场
-    </view>
-  </view><view class="scrollItem">
-    <view class="navContent">
-      现场
-    </view>
-  </view>
   </scroll-view>
 </view>

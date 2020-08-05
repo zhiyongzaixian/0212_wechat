@@ -8,3 +8,14 @@ let arr = [2,3,4,5,6,7]
 
 console.log(arr.slice(2, 4));
 console.log(arr);
+
+console.log('****************************');
+// <<< || >>>位移运算符
+let num = 3;
+// 0000 0011
+//  00000 001
+
+console.log(num>>>1); // 1
+console.log(num>>>2); // 0
+
+// 右移 0 位， 可以将非布尔值转换成布尔值
