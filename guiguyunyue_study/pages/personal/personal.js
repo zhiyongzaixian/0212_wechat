@@ -9,14 +9,21 @@ Page({
    */
   data: {
     coverTransform: 'translateY(0)',
-    coverTransition: ''
+    coverTransition: '',
+    userInfo: {}, // 用户信息
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // 读取本地用户信息数据
+    let userInfo = wx.getStorageSync('userInfo')
+    if(userInfo){
+      this.setData({
+        userInfo: JSON.parse(userInfo)
+      })
+    }
   },
   
   handleTouchStart(event){
