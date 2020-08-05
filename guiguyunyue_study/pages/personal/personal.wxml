@@ -31,6 +31,7 @@
       bindtouchstart="handleTouchStart"
       bindtouchmove="handleTouchMove"
       bindtouchend="handleTouchEnd"
+      style="transform: {{coverTransform}}; transition: {{coverTransition}}"
   >
     <image class="arc" src="/static/images/personal/arc.png"></image>
     <!-- 个人中心导航 -->
