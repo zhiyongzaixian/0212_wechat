@@ -31,7 +31,7 @@ export default (url, data={}, method='GET') => {
       method,
       header: { // 请求头
         // cookie字段要求必须是字符串类型
-        cookie: JSON.parse(wx.getStorageSync('cookies')).toString()
+        cookie: JSON.parse(wx.getStorageSync('cookies') || "[]").toString()
       },
       success: (res) => {
         console.log(res);
