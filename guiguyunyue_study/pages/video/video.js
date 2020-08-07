@@ -42,7 +42,7 @@ Page({
     
     
     // 获取导航标签下对应的视频列表数据
-    // let videoListData = await request('/video/group', {id: this.data.navId});
+    // let videoListData = await request('/video-demo/group', {id: this.data.navId});
     // let index = 0;
     // videoListData.datas.forEach(item => item.id = index++);
     // this.setData({
@@ -83,7 +83,6 @@ Page({
   // 点击视频播放/继续播放的回调
   handlePlay(event){
    //  console.log('play()');
-    
     /*
     * 1. 问题： 多个video标签可以同时播放
     * 2. 解决思路：
@@ -95,7 +94,7 @@ Page({
     *
     * */
     let {id} = event.currentTarget;
-    
+    let {videoUpdateTime} = this.data;
     // console.log(this.videoContext);
     /*
     * this.videoContext
@@ -103,6 +102,7 @@ Page({
     *   2) 再次点击: 上一次的上下文对象
     *
     * */
+    // 解决多个video同时播放的问题
     // this.vid !== id && this.videoContext && this.videoContext.stop();
     // if(this.vid !== id){
     //   if(this.videoContext){
@@ -110,7 +110,7 @@ Page({
     //   }
     // }
     // this.vid = id;
-    
+   
     
     // 更新videoId的状态数据
     this.setData({
@@ -120,6 +120,12 @@ Page({
     // 单例模式： 始终保持只有一个对象，当需要创建新的对象的时候会将原有的对象覆盖，使得原有的对象成为垃圾对象，被自动回收，节省内存空间
     
     this.videoContext = wx.createVideoContext(id);
+    // 判断之前的视频是否播放过，如果播放过，跳转至指定的位置
+    let videoItem = videoUpdateTime.find(item => item.vid === id);
+    if(videoItem){
+      // 跳转至指定的位置播放
+      this.videoContext.seek(videoItem.currentTime);
+    }
     this.videoContext.play();
     // this.videoContext.stop(); // 停止视频
     
@@ -127,9 +133,20 @@ Page({
   
   // 监听视频播放进度的回调
   handleTimeUpdate(event){
-    console.log(event.detail.currentTime);
-    console.log(event.currentTarget.id);
-    let videoOjb = {vid: event.currentTarget.id,currentTime: event.detail.currentTime}
+    let videoObj = {vid: event.currentTarget.id, currentTime: event.detail.currentTime};
+    let {videoUpdateTime} = this.data
+    // 判断记录时间的数组中是否保存过当前video相关的对象参数
+    let videoItem = videoUpdateTime.find(item => item.vid === videoObj.vid);
+    if(videoItem){ // 之前保存过
+      // 实时更新时间进度
+      videoItem.currentTime = event.detail.currentTime;
+    }else { // 未保存
+      videoUpdateTime.push(videoObj);
+    }
+    this.setData({
+      videoUpdateTime
+    })
+    
   },
 
   /**

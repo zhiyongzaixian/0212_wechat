@@ -19,3 +19,10 @@ console.log(num>>>1); // 1
 console.log(num>>>2); // 0
 
 // 右移 0 位， 可以将非布尔值转换成布尔值
+
+
+console.log('***********************************');
+let arr2 = [{name: 'kobe'}, {name: 'curry'}, {name: 'wade'}]
+console.log(arr2.find(item => item.name === 'curry')); // {name: 'curry'}
+console.log(arr2.find(item => item.name === 'xxxx'));// undefined
+
