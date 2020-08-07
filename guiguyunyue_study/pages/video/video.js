@@ -8,6 +8,8 @@ Page({
     videoGroupList: [], // 视频导航标签数据
     navId: '', // 导航标识id,
     videoList: [], // 视频列表数据
+    videoId: '', // 视频的vid
+    videoUpdateTime: [], // 保存视频播放记录时间的数组
   },
   
   /**
@@ -94,7 +96,7 @@ Page({
     * */
     let {id} = event.currentTarget;
     
-    console.log(this.videoContext);
+    // console.log(this.videoContext);
     /*
     * this.videoContext
     *   1) 第一次点击： undefined
@@ -102,18 +104,32 @@ Page({
     *
     * */
     // this.vid !== id && this.videoContext && this.videoContext.stop();
-    if(this.vid !== id){
-      if(this.videoContext){
-        this.videoContext.stop();
-      }
-    }
-    this.vid = id;
+    // if(this.vid !== id){
+    //   if(this.videoContext){
+    //     this.videoContext.stop();
+    //   }
+    // }
+    // this.vid = id;
+    
+    
+    // 更新videoId的状态数据
+    this.setData({
+      videoId: id
+    })
     // 创建一个video标签的上下文对象
     // 单例模式： 始终保持只有一个对象，当需要创建新的对象的时候会将原有的对象覆盖，使得原有的对象成为垃圾对象，被自动回收，节省内存空间
     
     this.videoContext = wx.createVideoContext(id);
+    this.videoContext.play();
     // this.videoContext.stop(); // 停止视频
     
+  },
+  
+  // 监听视频播放进度的回调
+  handleTimeUpdate(event){
+    console.log(event.detail.currentTime);
+    console.log(event.currentTarget.id);
+    let videoOjb = {vid: event.currentTarget.id,currentTime: event.detail.currentTime}
   },
 
   /**
