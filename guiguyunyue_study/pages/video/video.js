@@ -209,7 +209,23 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function ({from}) {
+    console.log(from);
+    if(from === 'button'){
+      // 自定义转发内容
+      return {
+        title: '来自于button的转发',
+        path: '/pages/video/video',
+        imageUrl: '/static/images/nvsheng.jpg'
+      }
+    }else{
+      // 自定义转发内容
+      return {
+        title: '来自于menu的转发',
+        path: '/pages/video/video',
+        imageUrl: '/static/images/nvsheng.jpg'
+      }
+    }
+   
   }
 })
