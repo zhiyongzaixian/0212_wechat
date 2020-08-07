@@ -45,9 +45,13 @@
 }
 
 
+.scrollList {
+  height: calc(100vh - 395rpx)
+}
 .scrollItem {
   position: relative;
   display: flex;
+  margin-top: 20rpx;
 }
 
 .scrollItem image {
