@@ -77,6 +77,44 @@ Page({
     // 根据当前的视频标签id获取对应的视频列表数据
     this.getVideoList(this.data.navId);
   },
+  
+  // 点击视频播放/继续播放的回调
+  handlePlay(event){
+   //  console.log('play()');
+    
+    /*
+    * 1. 问题： 多个video标签可以同时播放
+    * 2. 解决思路：
+    *   1) 点击播放新的视频的时候去关掉上一个视频
+    *   2) 可以通过 wx.createVideoContext(vid)创建一个控制video标签的上下文对象
+    *   3) 找到上一个视频的上下文对象?
+    * 3. 新的api: wx.createVideoContext(vid)
+    *
+    *
+    * */
+    let {id} = event.currentTarget;
+    
+    console.log(this.videoContext);
+    /*
+    * this.videoContext
+    *   1) 第一次点击： undefined
+    *   2) 再次点击: 上一次的上下文对象
+    *
+    * */
+    // this.vid !== id && this.videoContext && this.videoContext.stop();
+    if(this.vid !== id){
+      if(this.videoContext){
+        this.videoContext.stop();
+      }
+    }
+    this.vid = id;
+    // 创建一个video标签的上下文对象
+    // 单例模式： 始终保持只有一个对象，当需要创建新的对象的时候会将原有的对象覆盖，使得原有的对象成为垃圾对象，被自动回收，节省内存空间
+    
+    this.videoContext = wx.createVideoContext(id);
+    // this.videoContext.stop(); // 停止视频
+    
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

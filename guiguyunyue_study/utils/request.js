@@ -34,7 +34,7 @@ export default (url, data={}, method='GET') => {
         cookie: JSON.parse(wx.getStorageSync('cookies') || "[]").toString()
       },
       success: (res) => {
-        console.log(res);
+        // console.log(res);
         /*
         * 需求： video页面获取视频列表需要用户的cookie
         * 获取：
