@@ -10,6 +10,7 @@ Page({
     videoList: [], // 视频列表数据
     videoId: '', // 视频的vid
     videoUpdateTime: [], // 保存视频播放记录时间的数组
+    triggered: false, // 标识下拉刷新是否被触发
   },
   
   /**
@@ -61,6 +62,7 @@ Page({
     wx.hideLoading();
     
     this.setData({
+      triggered: false,
       videoList: videoListData.datas
     })
   },
@@ -148,6 +150,18 @@ Page({
     })
     
   },
+  
+  // 自定义下拉刷新的回调
+  handleRefresherRefresh(){
+    console.log('--- scrollView 下拉刷新');
+    // 发送请求获取最新的数据
+    this.getVideoList(this.data.navId);
+  },
+  // 上拉触底
+  handleScrollToLower(){
+    console.log('------- scrollView 上拉触底 -------');
+    console.log('发送请求获取多余的数据展示给用户');
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -181,16 +195,17 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console.log('页面下拉刷新');
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log('------- 页面上拉触底 --------');
   },
 
+ 
   /**
    * 用户点击右上角分享
    */

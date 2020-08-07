@@ -54,7 +54,7 @@
 /* 视频列表区域 */
 .videoList {
   /*视口单位： vw, vh   1wh = 1%视口高度  1vw=1%视口宽度*/
-  height: calc(100vh - 162rpx); /*calc可以用来动态计算盒子的宽高*/
+  height: calc(100vh - 102rpx); /*calc可以用来动态计算盒子的宽高*/
 }
 
 .videoItem {
