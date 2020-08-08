@@ -1,3 +1,4 @@
+import PubSub from 'pubsub-js'
 import request from '../../utils/request';
 
 // 获取全局App实例
@@ -104,6 +105,13 @@ Page({
      
       // appInstance.globalData.musicId = musicId;
     }
+  },
+  
+  // 切换歌曲的回调
+  switchMusic(event){
+    let type = event.currentTarget.id;
+    console.log(type);
+    PubSub.publish('switchType', type)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

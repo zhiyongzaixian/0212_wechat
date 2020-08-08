@@ -1,4 +1,7 @@
+// 小程序使用第三方包会自动去miniprogram_npm去找，如果有就使用，如果没有会从当前位置相对路径去找，
+import PubSub from 'pubsub-js'
 import request from '../../utils/request'
+
 Page({
 
   /**
@@ -38,6 +41,13 @@ Page({
     let recommendListData = await request('/recommend/songs')
     this.setData({
       recommendList: recommendListData.recommend
+    })
+    
+    
+    // 订阅songDetail发布的消息
+    PubSub.subscribe('switchType', (msg, type) => {
+      console.log('接收到来自songDetail的发布的消息 ');
+      console.log(msg, type);
     })
   },
   
