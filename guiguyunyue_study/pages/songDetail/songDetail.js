@@ -1,4 +1,12 @@
-import request from '../../utils/request'
+import request from '../../utils/request';
+
+// 获取全局App实例
+let appInstance = getApp();
+// console.log(appInstance);
+// appInstance.globalData.musicId = 123;
+// console.log(appInstance);
+
+
 Page({
 
   /**
@@ -28,15 +36,45 @@ Page({
     wx.setNavigationBarTitle({
       title: this.data.song.name
     })
+    
+    
+    // 根据全局存储的状态判断当前页面的音乐是否在播放
+    if(appInstance.globalData.isMusicPlay && appInstance.globalData.musicId === musicId){ // 当前页面音乐在播放
+      this.setData({
+        isPlay: true
+      })
+    }
+    
+    // 监听音乐播放/暂停/停止
+    this.backgroundAudioManager = wx.getBackgroundAudioManager();
+    this.backgroundAudioManager.onPlay(() => {
+      // 修改全局播放的状态
+      this.changeIsPlayState(true)
+      appInstance.globalData.musicId = musicId;
+    });
+    this.backgroundAudioManager.onPause(() => {
+      this.changeIsPlayState(false)
+    });
+    this.backgroundAudioManager.onStop(() => {
+      this.changeIsPlayState(false)
+    })
+  },
+  // 封装修改状态方法
+  changeIsPlayState(isPlay){
+    this.setData({
+      isPlay
+    })
+    // 修改全局播放的状态
+    appInstance.globalData.isMusicPlay = isPlay;
   },
   
   // 控制音乐播放/暂停的回调
   musicPlay(){
     let isPlay = !this.data.isPlay
     // 1. 修改播放状态
-    this.setData({
-      isPlay
-    })
+    // this.setData({
+    //   isPlay
+    // })
     
     // 2. 控制音乐播放
     let {musicId} = this.data;
@@ -48,7 +86,7 @@ Page({
   async musicControl(isPlay, musicId){
     // console.log(isPlay);
   
-    let backgroundAudioManager = wx.getBackgroundAudioManager();
+    
     if(isPlay){ // 音乐播放
       // 1) 根据音乐id获取音乐链接
       let musicLinkData = await request('/song/url', {id: musicId})
@@ -56,12 +94,15 @@ Page({
       this.setData({
         musicLink
       })
-      
       // 2) 播放音乐 wx.getBackgroundAudioManager()
-      backgroundAudioManager.src = musicLink;
-      backgroundAudioManager.title = this.data.song.name;
+      this.backgroundAudioManager.src = musicLink;
+      this.backgroundAudioManager.title = this.data.song.name;
+      
+     
     }else { // 音乐暂停
-      backgroundAudioManager.pause();
+      this.backgroundAudioManager.pause();
+     
+      // appInstance.globalData.musicId = musicId;
     }
   },
   /**
