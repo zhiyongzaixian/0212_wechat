@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    isPlay: false, // 标识音乐是否播放，默认为未播放
   },
 
   /**
@@ -13,6 +13,14 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+  
+  // 控制音乐播放/暂停的回调
+  musicPlay(){
+    let isPlay = !this.data.isPlay
+    this.setData({
+      isPlay
+    })
   },
 
   /**

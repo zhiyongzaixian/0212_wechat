@@ -24,19 +24,96 @@
   top: -40rpx;
   width: 192rpx;
   height: 274rpx;
+  /* 设置旋转中心店*/
+  transform-origin: 40rpx 0;
+  transform: rotate(-20deg);
+  transition: transform 1s;
 }
 
+
+.needleRotate {
+  transform: rotate(0deg);
+}
+
+
+
 .discContainer{
+  position: relative;
+  z-index: 1;
+  top: -170rpx;
   width: 598rpx;
   height: 598rpx;
 }
 
 
 .discContainer .disc {
-  position: relative;
-  z-index: 1;
-  top: -170rpx;
   width: 100%;
   height: 100%;
+}
 
+.discContainer .musicImg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 370rpx;
+  height: 370rpx;
+  border-radius: 50%;
+}
+
+
+.discAnimation {
+  /*animation用来规定动画的属性*/
+  animation: disc 4s linear infinite;
+  animation-delay: 1s;
+}
+
+/*
+ @keyframes:用来设置动画帧
+  1) 百分比
+    - 动画帧一般都大于2帧(0 - 100%中间可以任意拆分成多帧)
+    - 多用于复杂的动画
+    - 北京 - 上海 --> 北京 ---> 天津 ----> 深圳 ----> 上海
+  2) from to
+    - 动画帧只有两帧的时候(起始帧，结束帧)
+    - 多用于平滑的动画
+    - 北京 - 上海 ---直达
+
+
+ */
+@keyframes disc {
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+
+
+
+/* musicControl */
+.musicControl {
+  position: absolute;
+  bottom: 40rpx;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1rpx solid #fff;
+}
+
+.musicControl text {
+  width: 20%;
+  text-align: center;
+  font-size: 50rpx;
+  color: #fff;
+  height: 120rpx;
+  line-height: 120rpx;
+}
+.musicControl text.big {
+  font-size: 80rpx;
 }
