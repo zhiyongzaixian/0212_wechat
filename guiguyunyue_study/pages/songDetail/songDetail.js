@@ -28,15 +28,7 @@ Page({
     let musicId = options.id;
     
     // 根据音乐的id获取对应的音乐详情
-    let songData = await request('/song/detail', {ids: musicId})
-    this.setData({
-      song: songData.songs[0],
-      musicId
-    })
-    // 动态设置窗口标题
-    wx.setNavigationBarTitle({
-      title: this.data.song.name
-    })
+   this.getMusicInfo(musicId);
     
     
     // 根据全局存储的状态判断当前页面的音乐是否在播放
@@ -59,9 +51,34 @@ Page({
     this.backgroundAudioManager.onStop(() => {
       this.changeIsPlayState(false)
     })
+    
+    
+    // 订阅 recommendSong 发送的消息
+    PubSub.subscribe('musicId', (msg, musicId) => {
+      console.log('recommend发送过来的musicId: ', musicId);
+      // 获取音乐信息
+      this.getMusicInfo(musicId);
+      
+      // 自定播放音乐
+      this.musicControl(true, musicId)
+    })
+    
+  },
+  // 封装获取音乐信息的功能函数
+  async getMusicInfo(musicId){
+    let songData = await request('/song/detail', {ids: musicId})
+    this.setData({
+      song: songData.songs[0],
+      musicId
+    })
+    // 动态设置窗口标题
+    wx.setNavigationBarTitle({
+      title: this.data.song.name
+    })
   },
   // 封装修改状态方法
   changeIsPlayState(isPlay){
+    // 修改当前页面播放状态
     this.setData({
       isPlay
     })
@@ -85,9 +102,6 @@ Page({
   
   // 封装控制音乐播放/暂停的功能函数
   async musicControl(isPlay, musicId){
-    // console.log(isPlay);
-  
-    
     if(isPlay){ // 音乐播放
       // 1) 根据音乐id获取音乐链接
       let musicLinkData = await request('/song/url', {id: musicId})
@@ -110,8 +124,16 @@ Page({
   // 切换歌曲的回调
   switchMusic(event){
     let type = event.currentTarget.id;
-    console.log(type);
-    PubSub.publish('switchType', type)
+    // 停掉当前音乐
+    this.backgroundAudioManager.stop();
+    
+    PubSub.publish('switchType', type);
+    // PubSub.subscribe('musicId', (msg, musicId) => {
+    //   console.log('recommend发送过来的musicId: ', musicId);
+    //
+    //   // 取消订阅
+    //   PubSub.unsubscribe('musicId')
+    // })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -11,6 +11,7 @@ Page({
     day: '',
     month: '',
     recommendList: [], // 推荐列表
+    index: 0, // 记录点击跳转的音乐下标
   },
 
   /**
@@ -46,15 +47,38 @@ Page({
     
     // 订阅songDetail发布的消息
     PubSub.subscribe('switchType', (msg, type) => {
-      console.log('接收到来自songDetail的发布的消息 ');
       console.log(msg, type);
+      let {recommendList, index} = this.data;
+      // 判断切歌的类型： pre || next
+      if(type === 'pre'){ // 上一首
+        (index === 0) && (index = recommendList.length); // 第一首
+        index -= 1;
+      }else { // 下一首
+        (index === recommendList.length - 1) && (index = -1) // 最后一首
+        index += 1;
+      }
+      // 获取切歌之后对应的音乐id
+      let musicId = recommendList[index].id;
+      
+      //  更新index状态
+      this.setData({
+        index
+      })
+      
+      // 将musicId发送给songDetail
+      PubSub.publish('musicId', musicId)
+      
     })
   },
   
   // 跳转至songDetail页面
   toSongDetail(event){
     // let song = event.currentTarget.id;
-    let song = event.currentTarget.dataset.song;
+    let {song, index} = event.currentTarget.dataset;
+    
+    this.setData({
+      index
+    })
     // 路由跳转传参： query形式
     // 不能直接通过query传递数据量较大的对象，url长度有限制，会导致传递的数据被截取
     wx.navigateTo({
