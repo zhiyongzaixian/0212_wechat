@@ -8,7 +8,16 @@
   </view>
 
 
-
+  <!-- 进度条控制区域 -->
+  <view class="progressControl">
+    <text>00:00</text>
+    <view class="barControl">
+      <view class="audio-current-time">
+        <view class="audio-circle"></view>
+      </view>
+    </view>
+    <text>00:00</text>
+  </view>
 
 
   <!-- 底部播放选项区域 -->

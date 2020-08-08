@@ -59,7 +59,7 @@ Page({
       // 获取音乐信息
       this.getMusicInfo(musicId);
       
-      // 自定播放音乐
+      // 自定播放音乐,切歌
       this.musicControl(true, musicId)
     })
     
@@ -95,25 +95,32 @@ Page({
     // })
     
     // 2. 控制音乐播放
-    let {musicId} = this.data;
-    this.musicControl(isPlay, musicId);
+    let {musicId, musicLink} = this.data;
+    this.musicControl(isPlay, musicId, musicLink);
   },
 
   
   // 封装控制音乐播放/暂停的功能函数
-  async musicControl(isPlay, musicId){
+  async musicControl(isPlay, musicId, musicLink){
     if(isPlay){ // 音乐播放
       // 1) 根据音乐id获取音乐链接
-      let musicLinkData = await request('/song/url', {id: musicId})
-      let musicLink = musicLinkData.data[0].url;
-      this.setData({
-        musicLink
-      })
+      /*
+      * 思考：
+      *   1. 首次播放需要发送请求获取音乐链接
+      *   2. 再次播放，不需要发请求，直接使用之前的链接
+      *
+      * */
+      if(!musicLink){
+        let musicLinkData = await request('/song/url', {id: musicId})
+        musicLink = musicLinkData.data[0].url;
+        this.setData({
+          musicLink
+        })
+      }
+      
       // 2) 播放音乐 wx.getBackgroundAudioManager()
       this.backgroundAudioManager.src = musicLink;
       this.backgroundAudioManager.title = this.data.song.name;
-      
-     
     }else { // 音乐暂停
       this.backgroundAudioManager.pause();
      
