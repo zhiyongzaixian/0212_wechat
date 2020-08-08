@@ -40,6 +40,17 @@ Page({
       recommendList: recommendListData.recommend
     })
   },
+  
+  // 跳转至songDetail页面
+  toSongDetail(event){
+    // let song = event.currentTarget.id;
+    let song = event.currentTarget.dataset.song;
+    // 路由跳转传参： query形式
+    // 不能直接通过query传递数据量较大的对象，url长度有限制，会导致传递的数据被截取
+    wx.navigateTo({
+      url: '/pages/songDetail/songDetail?id=' + song.id
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
