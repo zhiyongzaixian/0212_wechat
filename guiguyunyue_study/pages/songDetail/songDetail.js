@@ -1,4 +1,5 @@
 import PubSub from 'pubsub-js'
+import moment from 'moment'
 import request from '../../utils/request';
 
 // 获取全局App实例
@@ -18,6 +19,9 @@ Page({
     song: {}, // 音乐详情
     musicId: '', // 音乐id
     musicLink: '', // 音乐链接
+    currentTime: '00:00', // 实时时间
+    durationTime: '00:00', // 歌曲总时间
+    currentWidth: 0, // 动态进度条
   },
 
   /**
@@ -51,6 +55,23 @@ Page({
     this.backgroundAudioManager.onStop(() => {
       this.changeIsPlayState(false)
     })
+  
+  
+    this.backgroundAudioManager.onTimeUpdate(() => {
+      // console.log('总时长: ', this.backgroundAudioManager.duration);
+      // console.log('实时时间: ', this.backgroundAudioManager.currentTime);
+      // 格式化实时的时间
+      let currentTime = moment(this.backgroundAudioManager.currentTime*1000).format('mm:ss');
+  
+      // 动态计算实时进度条的长度
+      let currentWidth = this.backgroundAudioManager.currentTime / this.backgroundAudioManager.duration * 450;
+      this.setData({
+        currentTime,
+        currentWidth
+      })
+      
+      
+    })
     
     
     // 订阅 recommendSong 发送的消息
@@ -67,9 +88,13 @@ Page({
   // 封装获取音乐信息的功能函数
   async getMusicInfo(musicId){
     let songData = await request('/song/detail', {ids: musicId})
+    // console.log(songData.songs[0].dt);
+    // moment格式化时间的单位是ms
+    let durationTime = moment(songData.songs[0].dt).format('mm:ss')
     this.setData({
       song: songData.songs[0],
-      musicId
+      musicId,
+      durationTime
     })
     // 动态设置窗口标题
     wx.setNavigationBarTitle({

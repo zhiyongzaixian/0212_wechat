@@ -147,7 +147,6 @@
   left: 0;
   z-index: 1;
   height: 4rpx;
-  width: 100rpx;
   background: red;
 }
 
@@ -160,3 +159,4 @@
   border-radius: 50%;
   background: #fff;
 }
+
