@@ -1,3 +1,9 @@
+/*独立分包的使用的全局样式 */
+@import "/static/iconfont/iconfont.wxss";
+page {
+  height: 100%;
+}
+
 .recommendSongContainer .header {
   position: relative;
   width: 100%;

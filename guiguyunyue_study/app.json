@@ -40,10 +40,17 @@
   "subpackages": [
     {
       "root": "song",
+      "name": "songPackage",
       "pages": [
         "pages/recommendSong/recommendSong",
         "pages/songDetail/songDetail"
-      ]
+      ],
+      "independent": true
     }
-  ]
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "packages": ["songPackage"]
+    }
+  }
 }
