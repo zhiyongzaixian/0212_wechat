@@ -1,11 +1,9 @@
 {
   "pages": [
-    "pages/recommdSong/recommendSong",
-    "pages/songDetail/songDetail",
+    "pages/index/index",
     "pages/video/video",
     "pages/login/login",
-    "pages/personal/personal",
-    "pages/index/index"
+    "pages/personal/personal"
 
   ],
   "window": {
@@ -38,5 +36,14 @@
       }
     ]
   },
-  "requiredBackgroundModes": ["audio"]
+  "requiredBackgroundModes": ["audio"],
+  "subpackages": [
+    {
+      "root": "song",
+      "pages": [
+        "pages/recommendSong/recommendSong",
+        "pages/songDetail/songDetail"
+      ]
+    }
+  ]
 }

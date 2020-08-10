@@ -1,6 +1,6 @@
 // 小程序使用第三方包会自动去miniprogram_npm去找，如果有就使用，如果没有会从当前位置相对路径去找，
 import PubSub from 'pubsub-js'
-import request from '../../utils/request'
+import request from '../../../utils/request'
 
 Page({
 
@@ -82,7 +82,7 @@ Page({
     // 路由跳转传参： query形式
     // 不能直接通过query传递数据量较大的对象，url长度有限制，会导致传递的数据被截取
     wx.navigateTo({
-      url: '/pages/songDetail/songDetail?id=' + song.id
+      url: '/song/pages/songDetail/songDetail?id=' + song.id
     })
   },
 

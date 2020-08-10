@@ -1,6 +1,6 @@
 import PubSub from 'pubsub-js'
 import moment from 'moment'
-import request from '../../utils/request';
+import request from '../../../utils/request';
 
 // 获取全局App实例
 let appInstance = getApp();
@@ -56,7 +56,15 @@ Page({
       this.changeIsPlayState(false)
     })
   
-  
+    // 监听音乐自然播放结束
+    this.backgroundAudioManager.onEnded(() => {
+      // 停掉当前音乐
+      this.backgroundAudioManager.stop();
+      // 自动切换至下一首
+      PubSub.publish('switchType', 'next');
+    })
+    
+    // 监听音乐播放进度实时发生改变
     this.backgroundAudioManager.onTimeUpdate(() => {
       // console.log('总时长: ', this.backgroundAudioManager.duration);
       // console.log('实时时间: ', this.backgroundAudioManager.currentTime);
