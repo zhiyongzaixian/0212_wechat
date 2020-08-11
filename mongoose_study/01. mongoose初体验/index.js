@@ -25,7 +25,7 @@ let studentsSchema = new mongoose.Schema({
   info: mongoose.SchemaTypes.Mixed // 任意类型
 })
 
-// 3. 创建Model对象
+// 3. 创建 Model 对象
 const StudentsModel = mongoose.model('students', studentsSchema)
 
 // 4. 创建文档对象
