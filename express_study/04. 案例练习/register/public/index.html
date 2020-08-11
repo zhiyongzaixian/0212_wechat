@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>注册界面</title>
+</head>
+<body>
+
+  <h1>欢迎来到注册界面</h1>
+  <form id="formLogin">
+    用户名: <input id="username" type="text" placeholder="请输入用户名"> <br>
+    密  码: <input id="password" type="password" placeholder="请输入密码"> <br>
+    确认密码: <input id="RePassword" type="password" placeholder="请再次确认密码"> <br>
+    <button id="btn" type="submit">注册</button>
+  </form>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.20.0-0/axios.min.js"></script>
+<script type="text/javascript">
+
+  let usernameInput = document.getElementById('username');
+  let passwordInput = document.getElementById('password');
+  let RePasswordInput = document.getElementById('RePassword');
+  let formLogin = document.getElementById('formLogin');
+
+  // 定义正则验证规则
+  let usernameReg = /^[a-zA-Z0-9]{4,12}$/;
+  let passwordReg = /^[0-9]{4,6}$/;
+
+  formLogin.addEventListener('submit', (e) => {
+    // 阻止默认行为
+    e.preventDefault();
+    // 1. 收集表单相数据
+    let username = usernameInput.value.trim();
+    let password = passwordInput.value.trim();
+    let rePassword = RePasswordInput.value.trim();
+    // 2. 前端验证
+    if(!usernameReg.test(username)){
+      alert('用户名不正确，支持长度为4-12位的英文，数字，字母');
+      return;
+    }
+
+    if(!passwordReg.test(password)){
+      alert('密码不正确，支持长度为4-6位的数字');
+      return;
+    }
+
+    if(password !== rePassword){
+      alert('两次输入的密码不一致');
+      return;
+    }
+
+    alert('前端验证通过')
+    // 3. 后端验证
+    axios.post('http://localhost:3001/register', {username, password})
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log('注册失败', err);
+      })
+
+
+  })
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
