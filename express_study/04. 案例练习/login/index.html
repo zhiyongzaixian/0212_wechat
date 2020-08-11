@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>登录界面</title>
+</head>
+<body>
+
+  <h1>欢迎来到登录界面</h1>
+  <form id="formLogin">
+    用户名: <input id="username" type="text" placeholder="请输入用户名"> <br>
+    密  码: <input id="password" type="password" placeholder="请输入密码"> <br>
+    <button id="btn" type="submit">登录</button>
+  </form>
+
+
+<script type="text/javascript">
+
+  let usernameInput = document.getElementById('username');
+  let passwordInput = document.getElementById('password');
+  let formLogin = document.getElementById('formLogin');
+
+  // 定义正则验证规则
+  let usernameReg = /^[a-zA-Z0-9]{4,12}$/;
+  let passwordReg = /^[0-9]{4,6}$/;
+
+  formLogin.addEventListener('submit', (e) => {
+    // 阻止默认行为
+    e.preventDefault();
+    // 1. 收集表单相数据
+    let username = usernameInput.value.trim();
+    let password = passwordInput.value.trim();
+    // 2. 前端验证
+    if(!usernameReg.test(username)){
+      alert('用户名不正确，支持长度为4-12位的英文，数字，字母');
+      return;
+    }
+
+    if(!passwordReg.test(password)){
+      alert('密码不正确，支持长度为4-6位的数字');
+      return;
+    }
+
+    alert('前端验证通过')
+    // 3. 后端验证
+  })
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
