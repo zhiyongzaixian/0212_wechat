@@ -8,15 +8,28 @@ const app = express();
 //   res.end('login data');
 // });
 
+
 // GET: params
 app.get('/login/:id', (req, res) => {
   console.log(req.params);
-  res.end('login data111');
+  // res.send('login data111');
+  // res.send('登录成功');
+  
+  // 设置响应头
+  res.set({
+    'content-type': 'text/html;charset=utf-8'
+  })
+  res.end('登录成功');
 });
 
 
 app.post('/register', (req, res) => {
   console.log(3333);
+  console.log(req.query);
+  console.log(req.params);
+  
+  // body参数默认不能直接获取，需要使用中间件获取
+  console.log(req.body);
   res.end('register data');
 });
 
