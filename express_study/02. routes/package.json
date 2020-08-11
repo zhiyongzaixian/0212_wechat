@@ -1,0 +1,10 @@
+{
+  "name": "node_routes",
+  "version": "1.0.0",
+  "dependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  }
+}
