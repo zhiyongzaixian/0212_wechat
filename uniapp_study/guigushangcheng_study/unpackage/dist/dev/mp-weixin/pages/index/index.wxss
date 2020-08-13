@@ -44,6 +44,7 @@
   overflow: hidden;
   -o-text-overflow: ellipsis;
      text-overflow: ellipsis;
+  padding: 0 10rpx;
 }
 .indexContainer .navScroll {
   white-space: nowrap;

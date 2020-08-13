@@ -123,6 +123,7 @@
 				white-space nowrap
 				overflow hidden
 				text-overflow ellipsis
+				padding 0 10rpx
 		.navScroll
 			white-space nowrap
 			height 80rpx

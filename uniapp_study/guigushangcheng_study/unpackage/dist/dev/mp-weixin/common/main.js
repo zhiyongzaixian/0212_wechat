@@ -13,6 +13,7 @@ var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 9));function 
 
 _vue.default.config.productionTip = false;
 
+// 声明App组件的小程序类型是 应用 application
 _App.default.mpType = 'app';
 
 var app = new _vue.default(_objectSpread({},

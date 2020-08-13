@@ -1,6 +1,6 @@
 <template>
 	<view class="recommendContianer">
-		<swiper class='navSwiper' :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
+		<swiper class='navSwiper' :indicator-dots="true" >
 			<swiper-item>
 				<view class="swiper-item">
 					<image src="https://yanxuan.nosdn.127.net/e6bb52dfba070e4d084f178cf52285fb.jpg?type=webp&imageView&quality=75&thumbnail=750x0" mode=""></image>
