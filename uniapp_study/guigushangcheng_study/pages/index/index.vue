@@ -12,56 +12,14 @@
 	
 		<!-- 导航区域 -->
 		<scroll-view scroll-x="true" class="navScroll" >
-			<view  class="navItem" :class="{activeClass: true}">
-				居家生活
-			</view>
-			<view  class="navItem">
-				美食酒水
-			</view>
-			<view class="navItem">
-				服饰鞋包
-			</view>
-			<view class="navItem">
-				居家生活
-			</view>
-			<view class="navItem">
-				美食酒水
-			</view>
-			<view class="navItem">
-				服饰鞋包
-			</view>
-			<view class="navItem">
-				居家生活
-			</view>
-			<view class="navItem">
-				美食酒水
-			</view>
-			<view class="navItem">
-				服饰鞋包
-			</view>
-			<view class="navItem">
-				居家生活
-			</view>
-			<view class="navItem">
-				美食酒水
-			</view>
-			<view class="navItem">
-				服饰鞋包
-			</view>
-			<view class="navItem">
-				居家生活
-			</view>
-			<view class="navItem">
-				美食酒水
-			</view>
-			<view class="navItem">
-				服饰鞋包
+			<view @click="changeNav(index)"  class="navItem" :class="{activeClass: navIndex === index}" v-for='(navItem, index) in indexData.kingKongModule.kingKongList' :key='index'>
+				{{navItem.text}}
 			</view>
 		</scroll-view>
 	
 		<!-- 内容区 -->
 		<scroll-view scroll-y="true" >
-			<Recommend></Recommend>
+			<Recommend ></Recommend>
 		</scroll-view>
 	</view>
 </template>
@@ -92,7 +50,10 @@
 		methods: {
 			...mapActions({
 				getIndexData: 'getIndexData'
-			})
+			}),
+			changeNav(navIndex){
+				this.navIndex = navIndex
+			}
 		},
 		computed: {
 			...mapState({

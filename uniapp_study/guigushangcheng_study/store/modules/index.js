@@ -17,6 +17,7 @@ const mutations = {
 const actions = {
 	async getIndexData({commit}){
 		// 执行异步任务，发请求获取数据
+		// let indexData = await request('/api/getIndexData'); // H5
 		let indexData = await request('/getIndexData');
 		// 触发mutation，同时将数据交给mutation
 		commit('changeIndexDataMutation', indexData)

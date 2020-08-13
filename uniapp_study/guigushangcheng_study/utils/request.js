@@ -3,7 +3,8 @@ import config from './config.js'
 export default (url, data={}, method='GET') => {
 	return new Promise((resolve, reject) => {
 		uni.request({
-			url: config.host + url,
+			// url: url, // H5项目 跨域代理
+			url: config.host + url, // 小程序
 			data,
 			method,
 			success: (res) => {

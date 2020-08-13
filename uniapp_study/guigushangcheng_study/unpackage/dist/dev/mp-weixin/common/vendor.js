@@ -9545,6 +9545,7 @@ var mutations = {
 var actions = {
   getIndexData: function () {var _getIndexData = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(_ref) {var commit, indexData;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:commit = _ref.commit;_context.next = 3;return (
 
+
                 (0, _request.default)('/getIndexData'));case 3:indexData = _context.sent;
               // 触发mutation，同时将数据交给mutation
               commit('changeIndexDataMutation', indexData);case 5:case "end":return _context.stop();}}}, _callee, this);}));function getIndexData(_x) {return _getIndexData.apply(this, arguments);}return getIndexData;}() };
@@ -10365,7 +10366,8 @@ if (hadRuntime) {
 var _default = function _default(url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var method = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'GET';
   return new Promise(function (resolve, reject) {
     uni.request({
-      url: _config.default.host + url,
+      // url: url, // H5项目 跨域代理
+      url: _config.default.host + url, // 小程序
       data: data,
       method: method,
       success: function success(res) {
