@@ -67,6 +67,7 @@
 </template>
 
 <script>
+	import {mapState, mapActions} from 'vuex';
 	import Recommend from '../../components/recommend/recommend.vue'
 	export default {
 		components: {
@@ -77,11 +78,26 @@
 				navIndex: 0, // 导航下标
 			}
 		},
-		onLoad() {
-
+		
+		/* uniApp即支持Vue的生命周期函数，同时也支持原生小程序的生命周期函数，但是官网建议： 原生小程序的生命周期函数能不用就不用 */
+		// onLoad() {
+		// 	console.log('onLoad()');
+		// },
+		mounted(){
+			// console.log(this.$store.state.indexModule.initData);
+			// this.$store.dispatch('getIndexData')
+			// 分发action
+			this.getIndexData();
 		},
 		methods: {
-
+			...mapActions({
+				getIndexData: 'getIndexData'
+			})
+		},
+		computed: {
+			...mapState({
+				indexData: state => state.indexModule.indexData
+			})
 		}
 	}
 </script>
