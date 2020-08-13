@@ -4,18 +4,77 @@
 		<view class="header">
 			<image class="logo" src="../../static/images/logo.png" mode=""></image>
 			<view class="search">
+				<text class="iconfont icon-sousuo"></text>
 				<input type="text" value="" placeholder="搜索商品" placeholder-class="placeholder"/>
 			</view>
 			<button class="userName">志勇在线</button>
 		</view>
+	
+		<!-- 导航区域 -->
+		<scroll-view scroll-x="true" class="navScroll" >
+			<view  class="navItem" :class="{activeClass: true}">
+				居家生活
+			</view>
+			<view  class="navItem">
+				美食酒水
+			</view>
+			<view class="navItem">
+				服饰鞋包
+			</view>
+			<view class="navItem">
+				居家生活
+			</view>
+			<view class="navItem">
+				美食酒水
+			</view>
+			<view class="navItem">
+				服饰鞋包
+			</view>
+			<view class="navItem">
+				居家生活
+			</view>
+			<view class="navItem">
+				美食酒水
+			</view>
+			<view class="navItem">
+				服饰鞋包
+			</view>
+			<view class="navItem">
+				居家生活
+			</view>
+			<view class="navItem">
+				美食酒水
+			</view>
+			<view class="navItem">
+				服饰鞋包
+			</view>
+			<view class="navItem">
+				居家生活
+			</view>
+			<view class="navItem">
+				美食酒水
+			</view>
+			<view class="navItem">
+				服饰鞋包
+			</view>
+		</scroll-view>
+	
+		<!-- 内容区 -->
+		<scroll-view scroll-y="true" >
+			<Recommend></Recommend>
+		</scroll-view>
 	</view>
 </template>
 
 <script>
+	import Recommend from '../../components/recommend/recommend.vue'
 	export default {
+		components: {
+			Recommend
+		},
 		data() {
 			return {
-				
+				navIndex: 0, // 导航下标
 			}
 		},
 		onLoad() {
@@ -37,13 +96,21 @@
 				height 40rpx
 				margin 10rpx 30rpx
 			.search
+				position relative
 				height 60rpx
 				width 420rpx
 				background #ededed
 				margin 0 10rpx
 				border-radius 10rpx
+				.iconfont 
+					position absolute
+					top 25%
+					left 10rpx
+					font-size 30rpx
 				input
 					height 60rpx
+					width 370rpx
+					margin-left 50rpx
 				.placeholder
 					font-size 24rpx
 			button
@@ -56,10 +123,22 @@
 				white-space nowrap
 				overflow hidden
 				text-overflow ellipsis
-			
-	
-	
-	
+		.navScroll
+			white-space nowrap
+			height 80rpx
+			.navItem
+				display inline-block
+				height 79rpx
+				width 140rpx
+				text-align center
+				line-height 79rpx
+				margin 0 10rpx
+				font-size 28rpx
+				/*父级引用: 在子元素的位置通过  & 可以找到当前子元素的父级元素 */
+				&.activeClass
+					border-bottom 1rpx solid #BB2C08
+		
+		
 .test
 	font-size 0
 </style>

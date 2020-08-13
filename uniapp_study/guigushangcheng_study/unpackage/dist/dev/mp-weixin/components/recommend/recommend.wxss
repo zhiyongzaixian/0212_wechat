@@ -1,0 +1,13 @@
+.recommendContianer .navSwiper {
+  width: 100%;
+  height: 350rpx;
+}
+.recommendContianer .navSwiper .swiper-item {
+  width: 100%;
+  height: 100%;
+}
+.recommendContianer .navSwiper .swiper-item image {
+  width: 100%;
+  height: 100%;
+}
+

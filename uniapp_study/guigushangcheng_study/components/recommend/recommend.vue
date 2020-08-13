@@ -1,0 +1,40 @@
+<template>
+	<view class="recommendContianer">
+		<swiper class='navSwiper' :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
+			<swiper-item>
+				<view class="swiper-item">
+					<image src="https://yanxuan.nosdn.127.net/e6bb52dfba070e4d084f178cf52285fb.jpg?type=webp&imageView&quality=75&thumbnail=750x0" mode=""></image>
+				</view>
+			</swiper-item>
+			<swiper-item>
+				<view class="swiper-item">
+					<image src="https://yanxuan.nosdn.127.net/f6e6a6765fbae9112c76387ebb36a638.jpg?type=webp&imageView&quality=75&thumbnail=750x0" mode=""></image>
+				</view>
+			</swiper-item>
+			<swiper-item>
+				<view class="swiper-item">
+					<image src="https://yanxuan.nosdn.127.net/eaf0dc31b33ffa2460364b2c1212f1a4.jpg?type=webp&imageView&quality=75&thumbnail=750x0" mode=""></image>
+				</view>
+			</swiper-item>
+		</swiper>
+	</view>
+</template>
+
+<script>
+	export default {
+		
+	}
+</script>
+
+<style lang="stylus" rel="stylesheet/stylus">
+	.recommendContianer
+		.navSwiper
+			width 100%
+			height 350rpx
+			.swiper-item
+				width 100%
+				height 100%
+				image
+					width 100%
+					height 100%
+</style>

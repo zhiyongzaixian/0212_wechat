@@ -12,14 +12,23 @@
   margin: 10rpx 30rpx;
 }
 .indexContainer .header .search {
+  position: relative;
   height: 60rpx;
   width: 420rpx;
   background: #ededed;
   margin: 0 10rpx;
   border-radius: 10rpx;
 }
+.indexContainer .header .search .iconfont {
+  position: absolute;
+  top: 25%;
+  left: 10rpx;
+  font-size: 30rpx;
+}
 .indexContainer .header .search input {
   height: 60rpx;
+  width: 370rpx;
+  margin-left: 50rpx;
 }
 .indexContainer .header .search .placeholder {
   font-size: 24rpx;
@@ -35,6 +44,23 @@
   overflow: hidden;
   -o-text-overflow: ellipsis;
      text-overflow: ellipsis;
+}
+.indexContainer .navScroll {
+  white-space: nowrap;
+  height: 80rpx;
+}
+.indexContainer .navScroll .navItem {
+  display: inline-block;
+  height: 79rpx;
+  width: 140rpx;
+  text-align: center;
+  line-height: 79rpx;
+  margin: 0 10rpx;
+  font-size: 28rpx;
+/*父级引用: 在子元素的位置通过  & 可以找到当前子元素的父级元素 */
+}
+.indexContainer .navScroll .navItem.activeClass {
+  border-bottom: 1rpx solid #bb2c08;
 }
 .test {
   font-size: 0;
