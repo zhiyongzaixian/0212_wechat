@@ -148,6 +148,14 @@ var _request = _interopRequireDefault(__webpack_require__(/*! ../../utils/reques
     navId: function navId(newValue, oldValue) {var _this2 = this;
       // find 根据指定的条件在数组中查找对应的元素，find查找到以后就停止 查找
       this.cateObj = this.cateList.find(function (item) {return _this2.navId === item.category.parentId;});
+    } },
+
+  methods: {
+    toDetail: function toDetail(listItem) {
+      // 注意：在原生的小程序中，不能将数据量大的对象作为url的query参数，否则会被截取掉
+      wx.navigateTo({
+        url: '/pages/detail/detail?listItem=' + JSON.stringify(listItem) });
+
     } } };exports.default = _default;
 
 /***/ }),

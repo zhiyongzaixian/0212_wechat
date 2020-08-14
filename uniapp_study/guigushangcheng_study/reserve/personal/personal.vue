@@ -4,7 +4,7 @@
 			<image class="userImg" src="../../static/images/personal/personal.png" mode=""></image>
 			<div class='userInfo' @click='toLogin'>
 				<p>未登录</p>
-				<p点击登录账号</p>
+				<p>点击登录账号</p>
 			</div>
 		</div>
 		

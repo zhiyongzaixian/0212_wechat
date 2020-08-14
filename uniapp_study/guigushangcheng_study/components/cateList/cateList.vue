@@ -11,7 +11,7 @@
 		
 		<!-- 列表区 -->
 		<view class="listContainer">
-			<view class="listItem" v-for="(listItem, index) in cateObj.itemList" :key='listItem.id'>
+			<view @click="toDetail(listItem)" class="listItem" v-for="(listItem, index) in cateObj.itemList" :key='listItem.id'>
 				<image :src="listItem.listPicUrl" mode=""></image>
 				<view>{{listItem.name}}</view>
 				<view style='color: red;font-weight: bold;'>$ {{listItem.retailPrice}}</view>
@@ -41,6 +41,14 @@
 			navId(newValue, oldValue){
 				// find 根据指定的条件在数组中查找对应的元素，find查找到以后就停止 查找
 				this.cateObj = this.cateList.find(item => this.navId === item.category.parentId);
+			}
+		},
+		methods: {
+			toDetail(listItem){
+				// 注意：在原生的小程序中，不能将数据量大的对象作为url的query参数，否则会被截取掉
+				wx.navigateTo({
+					url: '/pages/detail/detail?listItem=' + JSON.stringify(listItem)
+				})
 			}
 		}
 	}
