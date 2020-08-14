@@ -67,6 +67,42 @@
 .recommendContianer .kingKongList .kingKongItem text {
   line-height: 50rpx;
 }
+.recommendContianer .categoryModule .cateImg {
+  width: 100%;
+  height: 370rpx;
+}
+.recommendContianer .categoryModule .categoryScroll {
+  white-space: nowrap;
+}
+.recommendContianer .categoryModule .categoryScroll .cateItem {
+  display: inline-block;
+  width: 200rpx;
+  margin: 10rpx;
+  vertical-align: top;
+}
+.recommendContianer .categoryModule .categoryScroll .cateItem.more {
+  width: 200rpx;
+  height: 200rpx;
+  text-align: center;
+  line-height: 200rpx;
+  font-size: 26rpx;
+  background: #eee;
+}
+.recommendContianer .categoryModule .categoryScroll .cateItem .scrollImg {
+  width: 200rpx;
+  height: 200rpx;
+  background: #eee;
+}
+.recommendContianer .categoryModule .categoryScroll .cateItem view {
+  font-size: 24rpx;
+/* 自动换行 */
+  white-space: pre-wrap;
+/* 多行文本溢出 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
 .test {
   font-size: 0;
 }

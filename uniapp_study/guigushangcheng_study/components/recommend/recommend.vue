@@ -33,6 +33,21 @@
 				<text>{{item.text}}</text>
 			</view>
 		</view>
+	
+		<!-- categoryModule 底部内容区 -->
+		<view class="categoryModule" v-for="(cateItem, index) in indexData.categoryModule" :key='index'>
+			<image class="cateImg" :src="cateItem.titlePicUrl" mode=""></image>
+			<scroll-view scroll-x="true" class="categoryScroll" >
+				<view class="cateItem" v-for="item in cateItem.itemList" :key='item.id'>
+					<image class="scrollImg" :src="item.showPicUrl" mode=""></image>
+					<view>{{item.name}}</view>
+				</view>
+				
+				<view class="cateItem more" >
+					查看更多>
+				</view>
+			</scroll-view>
+		</view>
 	</view>
 </template>
 
@@ -86,8 +101,37 @@
 					height 110rpx
 				text
 					line-height 50rpx
-				
-					
+		.categoryModule
+			.cateImg
+				width 100%
+				height 370rpx
+			.categoryScroll
+				white-space nowrap
+				.cateItem
+					display inline-block
+					width 200rpx
+					margin 10rpx
+					vertical-align top
+					&.more
+						width 200rpx
+						height 200rpx
+						text-align center
+						line-height 200rpx
+						font-size 26rpx
+						background #eee
+					.scrollImg
+						width 200rpx
+						height 200rpx
+						background #eee
+					view
+						font-size 24rpx
+						/* 自动换行 */
+						white-space pre-wrap
+						/* 多行文本溢出 */
+						display -webkit-box
+						-webkit-box-orient vertical
+						-webkit-line-clamp 2
+						overflow hidden
 .test 
 	font-size 0
 </style>

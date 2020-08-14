@@ -12,15 +12,20 @@
 	
 		<!-- 导航区域 -->
 		<scroll-view scroll-x="true" class="navScroll" >
-			<view @click="changeNav(index)"  class="navItem" :class="{activeClass: navIndex === index}" v-for='(navItem, index) in indexData.kingKongModule.kingKongList' :key='index'>
+			<view class="navItem" :class="{activeClass: navIndex === 0}" @click="changeNav(0)">
+				推荐
+			</view>
+			<view @click="changeNav((index + 1))"  class="navItem" :class="{activeClass: navIndex === (index + 1)}" v-for='(navItem, index) in indexData.kingKongModule.kingKongList' :key='index'>
 				{{navItem.text}}
 			</view>
 		</scroll-view>
 	
 		<!-- 内容区 -->
-		<scroll-view scroll-y="true" >
+		<scroll-view scroll-y="true" class="contentScroll">
 			<Recommend ></Recommend>
 		</scroll-view>
+		<!-- isYellow = true navIndex = 0-->
+		<!-- <button @click='isYellow = !isYellow;navIndex=index' :class='{yellowClass: isYellow && navIndex === index, grayClass: !isYellow && navIndex === index} v-for='(item, index) in [1,2,3]'>按钮</button> -->
 	</view>
 </template>
 
@@ -115,7 +120,8 @@
 				/*父级引用: 在子元素的位置通过  & 可以找到当前子元素的父级元素 */
 				&.activeClass
 					border-bottom 1rpx solid #BB2C08
-		
+		.contentScroll
+			height calc(100vh - 160rpx)
 		
 .test
 	font-size 0
