@@ -154,15 +154,19 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var Recommend = function Recommend() {return __webpack_require__.e(/*! import() | components/recommend/recommend */ "components/recommend/recommend").then(__webpack_require__.bind(null, /*! ../../components/recommend/recommend.vue */ 31));};var _default =
+
+
+var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var Recommend = function Recommend() {return __webpack_require__.e(/*! import() | components/recommend/recommend */ "components/recommend/recommend").then(__webpack_require__.bind(null, /*! ../../components/recommend/recommend.vue */ 31));};var CateList = function CateList() {return Promise.all(/*! import() | components/cateList/cateList */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/cateList/cateList")]).then(__webpack_require__.bind(null, /*! ../../components/cateList/cateList.vue */ 59));};var _default =
+
 
 {
   components: {
-    Recommend: Recommend },
+    Recommend: Recommend, CateList: CateList },
 
   data: function data() {
     return {
-      navIndex: 0 // 导航下标
+      navIndex: 0, // 导航下标
+      navId: 0 // 导航的标识id
     };
   },
 
@@ -180,8 +184,9 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
   (0, _vuex.mapActions)({
     getIndexData: 'getIndexData' }), {
 
-    changeNav: function changeNav(navIndex) {
+    changeNav: function changeNav(navIndex, navId) {
       this.navIndex = navIndex;
+      this.navId = navId;
     } }),
 
   computed: _objectSpread({},

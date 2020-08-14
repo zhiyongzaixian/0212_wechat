@@ -34,6 +34,12 @@ router.get('/getIndexData', (ctx, next) => {
 	ctx.body = indexDatas
 });
 
+// 5.2 indexCateList数据接口
+let cateListData = require('./datas/indexCateList.json');
+router.get('/getCateListData', (ctx, next) => {
+	ctx.body = cateListData
+});
+
 // 4. 监听端口号
 app.listen('3001', () => {
 	console.log('服务器启动成功')

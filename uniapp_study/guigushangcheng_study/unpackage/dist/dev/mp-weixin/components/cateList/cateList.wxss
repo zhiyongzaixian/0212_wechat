@@ -1,0 +1,63 @@
+.cateListContainer swiper {
+  width: 100%;
+  height: 370rpx;
+}
+.cateListContainer swiper image {
+  width: 100%;
+  height: 100%;
+}
+.cateListContainer .title {
+  display: block;
+  text-align: center;
+  font-size: 34rpx;
+  color: #333;
+  line-height: 70rpx;
+}
+.cateListContainer .desc {
+  display: block;
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 40rpx;
+}
+.cateListContainer .listContainer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+/* 解决最后一行只有一个元素的时候不能靠左布局 */
+}
+.cateListContainer .listContainer:after {
+  content: '';
+  width: 345rpx;
+  height: 0;
+}
+.cateListContainer .listContainer .listItem {
+  width: 345rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.cateListContainer .listContainer .listItem image {
+  width: 345rpx;
+  height: 345rpx;
+}
+.cateListContainer .listContainer .listItem view {
+  white-space: pre-wrap;
+  font-size: 28rpx;
+  line-height: 50rpx;
+  text-align: left;
+}
+

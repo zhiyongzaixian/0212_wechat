@@ -12,19 +12,21 @@
 	
 		<!-- 导航区域 -->
 		<scroll-view scroll-x="true" class="navScroll" >
-			<view class="navItem" :class="{activeClass: navIndex === 0}" @click="changeNav(0)">
+			<view class="navItem" :class="{activeClass: navIndex === 0}" @click="changeNav(0, 0)">
 				推荐
 			</view>
-			<view @click="changeNav((index + 1))"  class="navItem" :class="{activeClass: navIndex === (index + 1)}" v-for='(navItem, index) in indexData.kingKongModule.kingKongList' :key='index'>
+			<view @click="changeNav((index + 1), navItem.L1Id)"  class="navItem" :class="{activeClass: navIndex === (index + 1)}" v-for='(navItem, index) in indexData.kingKongModule.kingKongList' :key='index'>
 				{{navItem.text}}
 			</view>
 		</scroll-view>
 	
 		<!-- 内容区 -->
 		<scroll-view scroll-y="true" class="contentScroll">
-			<Recommend ></Recommend>
+			<Recommend v-if='navId === 0'></Recommend>
+			<CateList v-else :navId=navId></CateList>
 		</scroll-view>
-		<!-- isYellow = true navIndex = 0-->
+		
+		<!-- isYellow = true navIndex = 0 -->
 		<!-- <button @click='isYellow = !isYellow;navIndex=index' :class='{yellowClass: isYellow && navIndex === index, grayClass: !isYellow && navIndex === index} v-for='(item, index) in [1,2,3]'>按钮</button> -->
 	</view>
 </template>
@@ -32,13 +34,15 @@
 <script>
 	import {mapState, mapActions} from 'vuex';
 	import Recommend from '../../components/recommend/recommend.vue'
+	import CateList from '../../components/cateList/cateList.vue'
 	export default {
 		components: {
-			Recommend
+			Recommend, CateList
 		},
 		data() {
 			return {
 				navIndex: 0, // 导航下标
+				navId: 0, // 导航的标识id
 			}
 		},
 		
@@ -56,8 +60,9 @@
 			...mapActions({
 				getIndexData: 'getIndexData'
 			}),
-			changeNav(navIndex){
+			changeNav(navIndex, navId){
 				this.navIndex = navIndex
+				this.navId = navId
 			}
 		},
 		computed: {
