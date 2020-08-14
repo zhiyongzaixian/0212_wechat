@@ -40,6 +40,12 @@ router.get('/getCateListData', (ctx, next) => {
 	ctx.body = cateListData
 });
 
+// 5.3 cateGoryData数据接口
+let cateGoryData = require('./datas/categoryDatas.json');
+router.get('/getCateGoryData', (ctx, next) => {
+	ctx.body = cateGoryData
+});
+
 // 4. 监听端口号
 app.listen('3001', () => {
 	console.log('服务器启动成功')
