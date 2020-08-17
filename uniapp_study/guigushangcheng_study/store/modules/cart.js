@@ -246,8 +246,16 @@ const getters = {
 		
 		// every VS some
 		return state.cartList.every(item => item.selected)
-		
-		
+	},
+	totalCount(state){
+		return state.cartList.reduce((pre, shopItem) => {
+			return pre + (shopItem.selected?shopItem.count:0)
+		}, 0)
+	},
+	totalPrice(state){
+		return state.cartList.reduce((pre, shopItem) => {
+			return pre + (shopItem.selected?shopItem.count * shopItem.retailPrice:0)
+		}, 0)
 	}
 }
 

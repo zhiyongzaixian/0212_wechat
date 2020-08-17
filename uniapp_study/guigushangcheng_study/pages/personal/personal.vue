@@ -45,6 +45,7 @@
 </template>
 
 <script>
+	import request from '../../utils/request.js'
 	module.exports = {
 		data(){
 			return {
@@ -96,7 +97,14 @@
 			}
 		},
 		mounted(){
-			
+			// 获取code
+			wx.login({
+				success: async (res) => {
+					let code = res.code;
+					// 将code发送给服务器端获取openid相关信息
+					let result = await request('/getOpenId', {code})
+				}
+			})
 			
 		},
 		onShow(){

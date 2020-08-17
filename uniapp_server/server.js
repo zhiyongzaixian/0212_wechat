@@ -1,6 +1,7 @@
 let Koa = require('koa');
 let KoaRouter = require('koa-router');
-
+let Fly = require("flyio/src/node")
+let fly = new Fly;
 // express: const app = express();
 // 1. 生成应用实例
 const app = new Koa();
@@ -44,6 +45,32 @@ router.get('/getCateListData', (ctx, next) => {
 let cateGoryData = require('./datas/categoryDatas.json');
 router.get('/getCateGoryData', (ctx, next) => {
 	ctx.body = cateGoryData
+});
+
+
+// 5.4 获取用户唯一openid的接口
+router.get('/getOpenId', async (ctx, next) => {
+	// 1. 获取参数： code
+	let code = ctx.query.code;
+	let appId = 'wx810e8b1fde386fde';
+	let appSecret = 'f7b98fbf9bd8fd45f0b84f79f8fff9f2';
+	
+	let url = `https://api.weixin.qq.com/sns/jscode2session?appid=${appId}&secret=${appSecret}&js_code=${code}&grant_type=authorization_code`
+	
+	// 发请求给微信服务器
+	let result = await fly.get(url);
+	// console.log('result: ', result.data, typeof result.data)
+	let openId = JSON.parse(result.data).openid;
+	console.log('openId:', openId);
+	let userA = {
+		openId:openId,
+		datas: {
+			monay: 1000000000
+		}
+	}
+	
+	// 注意： 不要把用户唯一标识直接客户端， 不安全，需要加密以后再返回，
+	ctx.body = 123;
 });
 
 // 4. 监听端口号

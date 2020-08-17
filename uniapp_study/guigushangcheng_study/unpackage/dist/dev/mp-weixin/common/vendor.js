@@ -8400,7 +8400,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/cart/cart": { "navigationBarTitleText": "购物车" }, "pages/index/index": { "navigationBarTitleText": "首页" }, "pages/detail/detail": {}, "pages/personal/personal": { "navigationBarTitleText": "个人中心", "navigationBarBackgroundColor": "#eed7b5" }, "pages/cateGory/cateGory": { "navigationBarTitleText": "分类" }, "pages/login/login": { "navigationBarBackgroundColor": "#f8f8f8" } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "硅谷商城", "navigationBarBackgroundColor": "#BB2C08" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/cart/cart": { "navigationBarTitleText": "购物车", "usingComponents": {} }, "pages/index/index": { "navigationBarTitleText": "首页", "usingComponents": { "recommend": "/components/recommend/recommend", "cate-list": "/components/cateList/cateList" } }, "pages/detail/detail": { "usingComponents": {} }, "pages/personal/personal": { "navigationBarTitleText": "个人中心", "navigationBarBackgroundColor": "#eed7b5", "usingComponents": {} }, "pages/cateGory/cateGory": { "navigationBarTitleText": "分类", "usingComponents": {} }, "pages/login/login": { "navigationBarBackgroundColor": "#f8f8f8", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "硅谷商城", "navigationBarBackgroundColor": "#BB2C08" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
@@ -10634,8 +10634,16 @@ var getters = {
 
     // every VS some
     return state.cartList.every(function (item) {return item.selected;});
-
-
+  },
+  totalCount: function totalCount(state) {
+    return state.cartList.reduce(function (pre, shopItem) {
+      return pre + (shopItem.selected ? shopItem.count : 0);
+    }, 0);
+  },
+  totalPrice: function totalPrice(state) {
+    return state.cartList.reduce(function (pre, shopItem) {
+      return pre + (shopItem.selected ? shopItem.count * shopItem.retailPrice : 0);
+    }, 0);
   } };var _default =
 
 

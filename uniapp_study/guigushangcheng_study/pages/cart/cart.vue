@@ -26,9 +26,9 @@
 			<!-- 底部下单 -->
 			<view class="cartFooter">
 				<text class='iconfont icon-xuanzhong' :class="{selected: isAllSelected}" @click="changeAllSelected(!isAllSelected)"></text>
-				<text class="allSelected">已选 2</text>
+				<text class="allSelected">已选 {{totalCount}}</text>
 				<view class="right">
-					<text class="totalPrice">合计: ￥2000</text>
+					<text class="totalPrice">合计: ￥{{totalPrice}}</text>
 					<text class="preOrder">下单</text>
 				</view>
 			</view>
@@ -56,7 +56,7 @@
 			...mapState({
 				cartList: state => state.cartModule.cartList
 			}),
-			...mapGetters(['isAllSelected'])
+			...mapGetters(['isAllSelected', 'totalCount', 'totalPrice'])
 		},
 		mounted(){
 			console.log(this)
