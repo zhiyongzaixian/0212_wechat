@@ -1,3 +1,4 @@
+import Vue from 'vue'
 // 购物车模块
 
 const state = {
@@ -159,8 +160,70 @@ const state = {
 	]
 }
 
+// 数据源在哪，操作数据的方法在哪
+
 const mutations = {
+	// 添加至购物车
+	changeCartList(state, shopDetail){
+		// 已知条件： state.cartList  shopDetail
+		/* 
+		 思路: 
+			1. 购物车中是否已经有要添加的商品
+				1) 如果已经有: 在原有的count上累加
+				2) 如果没有: 将要添加的商品信息对象直接push进cartList
+			2. Arrar.find()
+				返回值： 1. 目标元素 2. undefined
+		 */
+		let shopItem = state.cartList.find(item => item.id === shopDetail.id);
+		// console.log('shopItem', shopItem)
+		if(shopItem){// 已经有 在原有的count上累加
+			shopItem.count += 1;
+			console.log(shopItem.count)
+		}else { // 没有 第一次添加
+			// 非响应式属性
+			// shopDetail.count = 1;
+			// shopDetail.selected = true;
+			
+			// 响应式属性设置： Vue.set( target, propertyName/index, value )
+			Vue.set(shopDetail, 'count', 1);
+			Vue.set(shopDetail, 'selected', true);
+			state.cartList.push(shopDetail)
+		}
+	},
+	// 修改商品数量
+	changeCountMutation(state, {isAdd, index}){
+		// 注意点： mutation接收两个参数，
+		// 1. 第一个参数： state对象 
+		// 2. 第二个参数是交给mutation的参与修改状态的数据，如果想要交给mutation的是多条数据,需要传入对象或者是数组
+		// console.log('mutation: ', isAdd, index)
+		if(isAdd){ // 累加
+			state.cartList[index].count += 1
+		}else { // 累减
+			if(state.cartList[index].count > 1){
+				state.cartList[index].count-= 1
+			}else {
+				// 移除商品 splice对数组进行增删改，会改变原数组  VS slice截取数组的片段，不会影响原数组
+				uni.showModal({
+					title: '确认删除该商品吗',
+					success: (res) => {
+						if(res.confirm){
+							state.cartList.splice(index, 1)
+						}
+					}
+				})
+			}
+		}
+	},
 	
+	// 修改商品的选中状态
+	changeSelectedMutation(state, {selected, index}){
+		state.cartList[index].selected = selected
+	},
+	
+	// 修改全选/全不选的状态
+	changeAllSelectedMutation(state, selected){
+		state.cartList.forEach(item => (item.selected = selected))
+	}
 }
 
 const actions = {
@@ -168,7 +231,24 @@ const actions = {
 }
 
 const getters = {
-	
+	// 是否全选
+	isAllSelected(state){
+		// forEach()
+		// let result = true;
+		// state.cartList.forEach(item => !item.selected && (result = false))
+		// state.cartList.forEach(item => {
+		// 	// if(!item.selected){
+		// 	// 	result = false
+		// 	// }
+		// 	!item.selected && result = false
+		// })
+		// return result;
+		
+		// every VS some
+		return state.cartList.every(item => item.selected)
+		
+		
+	}
 }
 
 export default {
