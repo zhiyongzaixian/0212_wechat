@@ -102,7 +102,9 @@
 				success: async (res) => {
 					let code = res.code;
 					// 将code发送给服务器端获取openid相关信息
-					let result = await request('/getOpenId', {code})
+					let token = await request('/getOpenId', {code})
+					
+					wx.setStorageSync('token', token)
 				}
 			})
 			

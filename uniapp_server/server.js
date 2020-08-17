@@ -1,5 +1,6 @@
 let Koa = require('koa');
 let KoaRouter = require('koa-router');
+let jwt = require('jsonwebtoken');
 let Fly = require("flyio/src/node")
 let fly = new Fly;
 // express: const app = express();
@@ -69,8 +70,14 @@ router.get('/getOpenId', async (ctx, next) => {
 		}
 	}
 	
+	// 对openId进行加密
+	let token = jwt.sign(openId, 'atguigu');
+	console.log('token: ', token)
+	// 对token解密
+	let testResult = jwt.verify(token, 'atguigu')
+	console.log('解密结果： ', testResult)
 	// 注意： 不要把用户唯一标识直接客户端， 不安全，需要加密以后再返回，
-	ctx.body = 123;
+	ctx.body = token;
 });
 
 // 4. 监听端口号

@@ -223,10 +223,12 @@ module.exports = {
   mounted: function mounted() {
     // 获取code
     wx.login({
-      success: function () {var _success = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(res) {var code, result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+      success: function () {var _success = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(res) {var code, token;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                   code = res.code;
                   // 将code发送给服务器端获取openid相关信息
-                  _context.next = 3;return (0, _request.default)('/getOpenId', { code: code });case 3:result = _context.sent;case 4:case "end":return _context.stop();}}}, _callee, this);}));function success(_x) {return _success.apply(this, arguments);}return success;}() });
+                  _context.next = 3;return (0, _request.default)('/getOpenId', { code: code });case 3:token = _context.sent;
+
+                  wx.setStorageSync('token', token);case 5:case "end":return _context.stop();}}}, _callee, this);}));function success(_x) {return _success.apply(this, arguments);}return success;}() });
 
 
 
